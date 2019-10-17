@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- model version - always 4.0.0 for Maven 2.x POMs -->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- project coordinates - values which uniquely identify this project -->
+  <groupId>edu.ucsb.cs56.pconrad.menuitem</groupId>
+  <artifactId>menuitem</artifactId>
+  <name>menuitem</name>
+  <url>https://ucsb-cs56.github.io/f19/lab/lab05/</url>
+
+  <!-- configure what mvn package produces -->
+  
+  <packaging>jar</packaging>
+  <version>1.0</version>  
+
+  <!-- what version of Java should we use and what encoding for files? -->
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  
+  <!-- what other software does our project depend on (third-party JARs, etc.) -->
+  <dependencies>
+
+    <!-- JUnit unit testing (https://junit.org/) -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Test coverage ( https://www.eclemma.org/jacoco/ )-->
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.8.0</version>
+    </dependency>
+
+  </dependencies>
+
+  <!-- For use with github pages, to publish the site to the /docs subdirectory -->
+  <distributionManagement>
+    <site>
+      <id>website</id>
+      <url>file://${project.basedir}/docs/</url>
+    </site>
+  </distributionManagement>
+
+  
+  <build>
+
+    <plugins>
+
+      <!-- Make jar file executable -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <!-- full package name of class with the main you want to run -->
+              <mainClass>edu.ucsb.cs56.pconrad.menuitem.MenuItem</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      
+      <!-- Test case coverage report -->
+      <plugin>
+	<groupId>org.jacoco</groupId>
+	<artifactId>jacoco-maven-plugin</artifactId>
+	<version>0.7.7.201606060606</version>
+	<executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+	</executions>
+      </plugin>      
+
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-site-plugin</artifactId>
+	<version>3.3</version>
+	<configuration>
+	  <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+	</configuration>
+      </plugin>
+      
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-project-info-reports-plugin</artifactId>
+	<version>2.7</version>
+      </plugin>
+
+    </plugins>
+
+
+    
+  </build>
+
+</project>

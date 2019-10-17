@@ -1,0 +1,9 @@
+docs/jacoco
+target
+*.class
+
+*~
+*.swp
+.DS_Store
+
+
