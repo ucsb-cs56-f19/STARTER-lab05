@@ -129,6 +129,7 @@
   </build>
 
 
+   <!-- we only want the index.html; this answer says how: https://stackoverflow.com/a/35984435 -->
   <reporting>
     <plugins>
       <plugin>
@@ -138,18 +139,14 @@
         <reportSets>
           <reportSet>
             <reports>
-             <!-- <report>dependencies</report> -->
-              <report>project-team</report>
-              <report>mailing-list</report>
-              <report>cim</report>
-              <report>issue-tracking</report>
-              <report>license</report>
-              <report>scm</report>
+              <report>index</report>
             </reports>
           </reportSet>
         </reportSets>
       </plugin>
-      </plugins>
+      <!-- any further custom report here -->
+    </plugins>
   </reporting>
+
   
 </project>
